@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML 2</title>
+    <style>
+        h3{
+            font-size: 30px;
+        }
+        p,li{
+            font-size: 20px;
+            line-height: 27px
+        }
+        pre{
+            width: fit-content;
+            background: #f5f5f5;
+            border-left: 10px solid rgb(98, 74, 250);
+            padding: 10px;
+            margin: 20px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+<h3>Programa Simples de Cálculo de IMC com HTML e JavaScript</h3>
+<p>Neste exemplo, o HTML fornecerá a estrutura para os campos de entrada de peso e altura, e um botão para iniciar o cálculo. O JavaScript será responsável por pegar esses valores, calcular o IMC e exibir o resultado na página.</p>
+
+<h3>Passo 1: Crie um arquivo HTML (por exemplo, imc.html):</h3>
+<p>Este arquivo conterá a estrutura da página com os campos de entrada e a área para exibir o resultado.</p>
+ 
+<h3>Conteúdo do arquivo imc.html:</h3>
+
+<pre>&lt;!DOCTYPE html><br>
+&lt;html lang="pt-BR"><br>
+&lt;head><br>
+   &lt;meta charset="UTF-8"><br>
+   &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"><br>
+   &lt;title>Calculadora de IMC&lt;/title><br>
+   &lt;style><br>
+        body {<br>
+            font-family: Arial, sans-serif;<br>
+            display: flex;<br>
+            justify-content: center;<br>
+            align-items: center;<br>
+            min-height: 100vh;<br>
+            margin: 0;<br>
+            background-color: #f4f4f4;<br>
+        }<br>
+        .container {<br>
+            background-color: #fff;<br>
+            padding: 30px;<br>
+            border-radius: 8px;<br>
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);<br>
+            text-align: center;<br>
+        }<br>
+        input {<br>
+            padding: 10px;<br>
+            margin: 10px 0;<br>
+            border: 1px solid #ccc;<br>
+            border-radius: 4px;<br>
+            box-sizing: border-box;<br>
+        }<br>
+        button {<br>
+            padding: 10px 20px;<br>
+            background-color: #007bff;<br>
+            color: white;<br>
+            border: none;<br>
+            border-radius: 4px;<br>
+            cursor: pointer;<br>
+            font-size: 16px;<br>
+        }<br>
+        #resultado {<br>
+            margin-top: 20px;<br>
+            font-weight: bold;<br>
+            font-size: 18px;<br>
+        }<br>
+   &lt;/style><br>
+&lt;/head><br>
+&lt;body><br>
+   &lt;div class="container"><br>
+        &lt;h1>Calculadora de IMC&lt;/h1><br>
+        &lt;div><br>
+            &lt;label for="peso">Peso (kg):&lt;/label><br>
+            &lt;input type="number" id="peso" placeholder="Ex: 70.5"><br>
+        &lt;/div><br>
+        &lt;div><br>
+            &lt;label for="altura">Altura (m):&lt;/label><br>
+            &lt;input type="number" id="altura" placeholder="Ex: 1.75"><br>
+        &lt;/div><br>
+        &lt;button onclick="calcularIMC()">Calcular IMC&lt;/button><br>
+        &lt;div id="resultado">&lt;/div><br>
+   &lt;/div><br>
+ <br>
+   &lt;script><br>
+        function calcularIMC() {<br>
+            const peso = parseFloat(document.getElementById('peso').value);<br>
+            const altura = parseFloat(document.getElementById('altura').value);<br>
+            const resultadoDiv = document.getElementById('resultado');<br>
+ <br>
+            if (isNaN(peso) || isNaN(altura) || peso &lt;= 0 || altura &lt;= 0) {<br>
+                resultadoDiv.textContent = "Por favor, insira peso e altura válidos.";<br>
+                return;<br>
+            }<br>
+ <br>
+            const imc = peso / (altura * altura);<br>
+            resultadoDiv.textContent = `Seu IMC é: ${imc.toFixed(2)}`;<br>
+        }<br>
+   &lt;/script><br>
+&lt;/body><br>
+&lt;/html><br></pre>
+
+<h3>Explicação do Código:</h3>
+
+<h3>HTMl (&lt;html>)</h3>
+<p>A estrutura básica da página é definida com &lt;!DOCTYPE html>, &lt;html>, &lt;head> e &lt;body>.<br>
+Dentro do &lt;head>, definimos o título da página e alguns estilos CSS básicos para melhorar a aparência.<br>
+Dentro do &lt;body>, criamos um div com a classe container para agrupar os elementos.<br>
+Temos dois divs contendo rótulos (&lt;label>) e campos de entrada (&lt;input type="number">) para o peso e a altura. Os atributos id (peso e altura) são importantes para que o JavaScript possa acessar esses elementos.<br>
+Um botão (&lt;button>) com o texto "Calcular IMC" e um atributo onclick que chama a função JavaScript calcularIMC() quando o botão é clicado.<br>
+Um div com o id="resultado" que será usado para exibir o valor do IMC calculado.<br>
+A tag &lt;script> no final do &lt;body> contém o código JavaScript. Colocar o script no final garante que todos os elementos HTML já tenham sido carregados antes que o script tente interagir com eles.</p>
+
+<h3>JavaScript (&lt;script>):</h3>
+<p>A função calcularIMC() é definida. Esta função será executada quando o botão for clicado.<br>
+Dentro da função:<br>
+document.getElementById('peso').value obtém o valor digitado no campo de peso. parseFloat() converte essa string para um número decimal.<br>
+document.getElementById('altura').value faz o mesmo para o campo de altura.<br>
+document.getElementById('resultado') obtém a referência ao div onde o resultado será exibido.<br>
+Uma verificação (isNaN e as condições de peso e altura positivos) é feita para garantir que os valores inseridos são números válidos. Se não forem, uma mensagem de erro é exibida.<br>
+Se os valores forem válidos, o cálculo do IMC é feito (peso / (altura * altura)).<br>
+imc.toFixed(2) formata o resultado do IMC para exibir apenas duas casas decimais.<br>
+Finalmente, resultadoDiv.textContent = \Seu IMC é: ${imc.toFixed(2)}`atualiza o conteúdo dodiv` de resultado com o valor calculado do IMC.</p>
+
+
+
+<h3>Como Usar:</h3>
+<p>Salve o código HTML acima em um arquivo chamado imc.html.Abra este arquivo (imc.html) diretamente no seu navegador web (Chrome, Firefox, Safari, etc.).Você verá a interface da calculadora de IMC.Digite o seu peso (em quilogramas) no primeiro campo.Digite a sua altura (em metros) no segundo campo.Clique no botão "Calcular IMC".O resultado do seu IMC será exibido abaixo do botão.</p>
+
+<h3>Demonstração da Interação:</h3>
+<p>Este programa demonstra como o HTML cria a interface do usuário (os campos de entrada e o botão), e o JavaScript adiciona a interatividade e a lógica (pegar os valores, calcular o IMC e atualizar a página com o resultado) sem a necessidade de enviar informações para um servidor (backend) neste caso. Tudo acontece no navegador do usuário (frontend).<br>
+A diferença entre as duas aplicações é que o javascript nao precisa de outro componente para rodar junto ao html, tornando a programação mais “fácil” devido nao precisar de outra ferramenta.</p>
+<p><a href=imc.html>Exemplo da Calculadora.</a></p>
+<p><a href=index.html>Voltar á pagina 1.</a></p>
+</body>
+</html>
