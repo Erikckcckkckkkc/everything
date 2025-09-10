@@ -19,6 +19,7 @@
   </style>
 </head>
 <body>
+  <audio id="myAudio" src='mySound.mp3'></audio>
   <canvas id="gameCanvas" width="400" height="600"></canvas>
 
   <script>
@@ -106,6 +107,14 @@
     });
 
     gameLoop();
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "b") {
+        const audio = document.getElementById('myAudio');
+        audio.currentTime = 0;
+        audio.play();
+      }
+    });
   </script>
 </body>
 </html>
