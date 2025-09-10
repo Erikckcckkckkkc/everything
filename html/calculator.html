@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            border-radius:8px;
+            border-color:#cacaca;
+            background-color: #f4f4f4;
+        }
+        .calculator {
+            background: #f3f3f3;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .entrada {
+            margin-bottom: 20px;
+        }
+        .botoes button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius:8px;
+            border-color:#cacaca
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="entrada">
+            <label for="x">Primeiro número:</label>
+            <input type="number" id="x">
+        </div>
+        <div class="botoes">
+            <button onclick="op('1')">Adição</button>
+            <button onclick="op('2')">Subtração</button>
+            <button onclick="op('3')">Multiplicação</button>
+            <button onclick="op('4')">Divisão</button>
+            <button onclick="op('5')">Exponenciação</button>
+            <button onclick="op('6')">Radiciação</button>
+        </div>
+        <div class="entrada">
+            <label for="z">Segundo número:</label>
+            <input type="number" id="z">
+        </div>
+        <p id="y"></p>
+    </div>
+    <script>
+        function op(type) {
+            const x = parseFloat(document.getElementById('x').value);
+            const z = parseFloat(document.getElementById('z').value);
+            let y;
+
+            if (isNaN(x) || isNaN(z)) {
+                alert('Por favor, insira números válidos.');
+                return;
+            }
+
+            switch (type) {
+                case '1':
+                    y = x + z;
+                    v = x + z;
+                    break;
+                case '2':
+                    y = x - z;
+                    v = x - z
+                    break;
+                case '3':
+                    y = x * z;
+                    v = x * z
+                    break;
+                case '4':
+                    y = x / z;
+                    v = x / z
+                    break;
+                case '5':
+                    y = Math.pow(x, z);
+                    v = Math.pow(x, z)
+                    break;
+                case '6':
+                    y = Math.pow(x, 1 / z);
+                    v = Math.pow(x, 1 / z)
+                    break;
+                default:
+                    alert('Operação inválida.');
+                    return;
+            }
+
+            document.getElementById('y').innerHTML = `<p>Resultado: <mark>${y}</mark><p>`;
+            document.getElementById('x').value = y;
+        }
+    </script>
+</body>
+</html>

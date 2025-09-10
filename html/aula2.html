@@ -1,1 +1,26 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Somando dois números</title>
+</head>
+<style>
+    body {font: 12pt Arial};
+    button {font-size: 12pt; padding: 50px};
+</style>
+<script>
+    function soma(){
+        const n1 = Number(window.prompt('Digite o primeiro número'))
+        const n2 = Number(window.prompt('Digite o segundo número'))
+        const result = document.querySelector('section#result')
+        result.innerHTML = `<p>A soma de ${n1} e ${n2} é ${n1+n2}!</p>`
+    }
+</script>
+<body> <h1>Somando números no JS</h1>
+    <button onclick="soma()">Iniciar a soma</button>
+    <section id="result">
+        <p>O resultado é: </p>
+    </section>
+</body>
+</html>

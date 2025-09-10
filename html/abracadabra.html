@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Palavra Secreta</title>
+</head>
+<body>
+    <h1>Tente adivinhar a palavra secreta!</h1>
+    <input type="text" id=secret>
+    <button onclick="verify()">Enviar</button>
+    <p id="msg"></p>
+
+    <script>
+        const secret = "abracadabra"
+
+        function verify(){
+            const typed = document.getElementById("secret").value.toLowerCase()
+            const element = document.getElementById("msg");
+                if (typed === secret){
+                    element.textContent = "Parabéns! Você acertou :)";
+                }
+                else{
+                    element.textContent = "Tente novamente."
+                }
+        }
+    </script>
+</body>
+</html>

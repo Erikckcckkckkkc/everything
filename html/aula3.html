@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculando</title>
+</head>
+<body>
+    <h1>
+        <button onclick="calculo()">Clique para Calcular</button>
+        <section id="result">
+            <p>O resultado é:</p>
+        </section>
+
+        <script>
+            function calculo(){
+                const n1 = Number(window.prompt('Digite um número'))
+                const result = document.querySelector('section#result')
+                result.innerHTML = `<p>O dobro de ${n1} é ${n1*2} e a metado é ${n1/2}!</p>`
+            }
+        </script>
+    </h1>
+</body>
+</html>

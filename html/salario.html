@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALÁRIO</title>
+</head>
+<body>
+    <button onclick="sal()">Calcule salário</button>
+    <script>
+    function sal(){
+        const salario = Number(window.prompt('Digite seu salário'))
+            if (salario >= 3500){
+                (result = salario-500)}
+            else 
+            if (salario >= 3500){
+                result = salario-300}
+            else
+            if (salario >=2500){
+                result = salario-150}
+            else
+            if (salario <=2499){
+                result = "ISENTO"} //I HATE CODINGG!!!!!!!!!
+        const g = document.querySelector('section#g')
+        g.innerHTML = `<p>${result}</p>`
+}
+    </script>
+    <section id="g">
+        <p>O resultado é: </p>
+    </section>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Verification</title>
+</head>
+<body>
+  <form id="emailForm">
+    <label for="email">Enter your email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <button type="submit">Verify</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    const form = document.getElementById('emailForm');
+    const message = document.getElementById('message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailRegex.test(email)) {
+        message.textContent = "✅ Email is valid!";
+        message.style.color = "green";
+      } else {
+        message.textContent = "❌ Invalid email format. Please try again.";
+        message.style.color = "red";
+      }
+    });
+  </script>
+</body>
+</html>

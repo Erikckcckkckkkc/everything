@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" stylesheet="style.css"></rel>
+</head>
+<body>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+    }
+
+    .calculadora {
+        background-color: #222;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        width: 300px;
+        text-align: center;
+    }
+
+    .visor, .valor1, .oper {
+        background-color: #444;
+        color: #fff;
+        font-size: 24px;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: right;
+    }
+
+    .botoes {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+    }
+
+    .botao {
+        background-color: #555;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 18px;
+        padding: 15px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .botao:hover {
+        background-color: #666;
+    }
+
+    .botao.igual {
+        background-color: #f39c12;
+    }
+
+    .botao.igual:hover {
+        background-color: #e67e22;
+    }
+
+    .botao.operador {
+        background-color: #3498db;
+    }
+
+    .botao.operador:hover {
+        background-color: #2980b9;
+    }
+
+    .botao.clear {
+        background-color: #ffec1f;
+    }
+
+    .botao.clear:hover {
+        background-color: #ecd421;
+    }
+</style>
+    <div class="calculadora">
+        <div class="valor1" id="valor1">0</div><div class="oper" id="oper">+</div>
+
+        <div class="visor" id="visor">0</div>
+
+        <div class="botoes">
+            <button class="botao" onclick="adicionarNumero('7')">7</button>
+            <button class="botao" onclick="adicionarNumero('8')">8</button>
+            <button class="botao" onclick="adicionarNumero('9')">9</button>
+            <button class="botao operador" onclick="adicionarOperador('/')">/</button>
+            <button class="botao operador" onclick="adicionarOperador('√')">√</button>
+            <button class="botao" onclick="adicionarNumero('4')">4</button>
+            <button class="botao" onclick="adicionarNumero('5')">5</button>
+            <button class="botao" onclick="adicionarNumero('6')">6</button>
+            <button class="botao operador" onclick="adicionarOperador('*')">*</button>
+            <button class="botao operador" onclick="adicionarOperador('^')">^</button>
+            <button class="botao" onclick="adicionarNumero('1')">1</button>
+            <button class="botao" onclick="adicionarNumero('2')">2</button>
+            <button class="botao" onclick="adicionarNumero('3')">3</button>
+            <button class="botao operador" onclick="menos()">-</button>
+            <button class="botao clear" onclick="clearEntry()">CE</button>
+
+            <button class="botao igual" onclick="calcular()">=</button>
+            <button class="botao" onclick="adicionarNumero('0')">0</button>
+
+            <button class="botao operador" onclick="adicionarPonto()">.</button>
+            <button class="botao operador" onclick="adicionarOperador('+')">+</button>
+
+            <button class="botao clear" onclick="limparVisor()">C</button>
+        </div>
+    </div>
+
+    <script>
+        let valor1 = document.getElementById('valor1');
+        let visor = document.getElementById('visor');
+        let oper = document.getElementById('oper');
+        let operador = null;
+        let primeiroValor = null;
+        let c = 0
+
+        document.addEventListener("keydown",function(bevent){
+        if(bevent.key === 'Backspace')
+            if(visor.innerText.length > 1){visor.innerText = visor.innerText.slice(0,-1)}
+            else{visor.innerText = 0}
+        });
+
+        document.addEventListener("keydown",function(event){ // these detect key presses for the numbers
+        if (visor.innerText === '0' || visor.innerText === 'undefined' || visor.innerText === 'NaN' || visor.innerText === 'Infinity'){
+            if(event.key === '0'){visor.innerText = '0';}
+            if(event.key === '1'){visor.innerText = '1';}
+            if(event.key === '2'){visor.innerText = '2';}
+            if(event.key === '4'){visor.innerText = '4';}
+            if(event.key === '3'){visor.innerText = '3';}
+            if(event.key === '5'){visor.innerText = '5';}
+            if(event.key === '6'){visor.innerText = '6';}
+            if(event.key === '7'){visor.innerText = '7';}
+            if(event.key === '8'){visor.innerText = '8';}
+            if(event.key === '9'){visor.innerText = '9';}
+            }  
+        else{
+            if(event.key === '0'){visor.innerText += '0';}
+            if(event.key === '1'){visor.innerText += '1';}
+            if(event.key === '2'){visor.innerText += '2';}
+            if(event.key === '3'){visor.innerText += '3';}
+            if(event.key === '4'){visor.innerText += '4';}
+            if(event.key === '5'){visor.innerText += '5';}
+            if(event.key === '6'){visor.innerText += '6';}
+            if(event.key === '7'){visor.innerText += '7';}
+            if(event.key === '8'){visor.innerText += '8';}
+            if(event.key === '9'){visor.innerText += '9';}
+            } 
+        }); 
+
+        document. addEventListener("keydown", function(opevent){ // these detect operator key presses (+-*/)
+        if (valor1.innerText === '0'){
+            if (opevent.key === '+'){operador = '+'; primeiroValor = parseFloat(visor.innerText); valor1.innerText = primeiroValor; oper.innerText = '+'; visor.innerText = '0'}
+        
+            if (opevent.key === '*'){operador = '*'; primeiroValor = parseFloat(visor.innerText); valor1.innerText = primeiroValor; oper.innerText = '*'; visor.innerText = '0'}
+            if (opevent.key === '/'){operador = '/'; primeiroValor = parseFloat(visor.innerText); valor1.innerText = primeiroValor; oper.innerText = '/'; visor.innerText = '0'}
+        }else{
+            if (opevent.key === '+'){operador = '+'; oper.innerText = '+';}
+
+            if (opevent.key === '*'){operador = '*'; oper.innerText = '*';}
+            if (opevent.key === '/'){operador = '/'; oper.innerText = '/';}
+        }
+        });
+
+        document. addEventListener("keydown", function(devent){
+        if (devent.key === '-'){menos()}
+        });
+
+        document. addEventListener("keydown", function(revent){ // this one detects enter or equals 
+        if (revent.key === 'Enter'){calcular()}
+        if (revent.key === '='){calcular()}});
+
+        document. addEventListener("keydown", function(erase){ // erases everything
+        if (erase.key === 'c'){limparVisor()}
+        })
+
+        document. addEventListener("keydown", function(devent){ // detects if '.' is already present, if not adds one
+        if (devent.key === '.' || devent.key === ','){if (visor.innerText.indexOf('.') === -1){visor.innerText += '.';};}
+        });
+
+        function adicionarNumero(numero){
+            if (visor.innerText === '0' || visor.innerText === 'undefined' || visor.innerText === 'NaN' || visor.innerText === 'Infinity'){
+                visor.innerText = numero;
+            }
+            else{
+                visor.innerText += numero;
+            }
+        }
+
+        function adicionarPonto(){
+            if (visor.innerText.indexOf('.') === -1){visor.innerText += '.';}
+        }
+
+        function menos(){
+            if (visor.innerText.indexOf('-') === -1, visor.innerText === '0'){
+                visor.innerText = '-';
+            }
+            else{
+                if (valor1.innerText === '0'){
+                    operador = '-'; 
+                    primeiroValor = parseFloat(visor.innerText); 
+                    valor1.innerText = primeiroValor; 
+                    oper.innerText = '-'; 
+                    visor.innerText = '0'
+                }
+                else{
+                    operador = '-'; 
+                    oper.innerText = '-'; 
+                    visor.innerText = '0'}
+            }
+        }
+        
+        function adicionarOperador(op){
+            if (valor1.innerText === '0'){
+                operador = op;
+                primeiroValor = parseFloat(visor.innerText); 
+                valor1.innerText = primeiroValor; 
+                oper.innerText = String(op); 
+                visor.innerText = '0';}
+            else{
+                operador = op; 
+                oper.innerText = String(op); 
+                visor.innerText = '0'
+        }}
+
+        function calcular() {
+    
+        segundoValor = parseFloat(visor.innerText);
+        switch(operador) {
+            case '+':
+                resultado = primeiroValor + segundoValor;
+                break;
+            case '-':
+                resultado = primeiroValor - segundoValor;
+                break;
+            case '*':
+                resultado = primeiroValor * segundoValor;
+                break;
+            case '/':
+                resultado = primeiroValor / segundoValor;
+                break;
+            case '√':
+                resultado = Math.pow(primeiroValor, 1/segundoValor)
+            case '^':
+                resultsado = Math.pow(primeiroValor, segundoValor)
+        }
+        valor1.innerText = resultado;
+        visor.innerText = '0';
+    primeiroValor = resultado;
+}
+
+        function clearEntry(){
+            visor.innerText = '0'
+        }
+
+        function limparVisor(){
+            visor.innerText = '0'
+            valor1.innerText = '0'
+            oper.innerText = '+'
+            primeiroValor = null;
+            segundoValor = null;
+            operador = null;
+        }
+    </script>
+</body>
+</html>
