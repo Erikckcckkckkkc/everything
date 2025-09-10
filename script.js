@@ -1,7 +1,8 @@
 const projetos = [
-  { nome: "Projeto 1 - Python", arquivo: "projetos/projeto1.py" },
-  { nome: "Projeto 2 - JavaScript", arquivo: "projetos/projeto2.js" },
-  { nome: "Projeto 3 - HTML", arquivo: "projetos/projeto3.html" }
+  { nome: "Projeto 1", arquivo: "projetos/App.js" },
+  { nome: "Projeto 2", arquivo: "projetos/App0krty.js" },
+  { nome: "Projeto 3", arquivo: "projetos/AppHello.js" },
+  { nome: "Projeto 4", arquivo: "projetos/TransactionForm.js" },
 ];
 
 const lista = document.getElementById("lista-projetos");
