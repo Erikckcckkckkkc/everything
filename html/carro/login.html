@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Aluguel de Veículos</title>
+  <style>
+    body { background-color: #fffacd; font-family: Arial, sans-serif; text-align: center; }
+    h1 { color: #003399; }
+    input { margin: 10px; padding: 8px; }
+    button { padding: 10px 20px; }
+  </style>
+</head>
+<body>
+  <h1>Login do Administrador</h1>
+  <input type="text" id="usuario" placeholder="Usuário"><br>
+  <input type="password" id="senha" placeholder="Senha"><br>
+  <button onclick="login()">Entrar</button>
+
+  <script>
+    function login() {
+      const u = document.getElementById('usuario').value;
+      const s = document.getElementById('senha').value;
+      if (u === 'Admin' && s === '1234') {
+        window.location.href = 'index.html';
+      } else {
+        alert('Credenciais inválidas!');
+      }
+    }
+  </script>
+</body>
+</html>

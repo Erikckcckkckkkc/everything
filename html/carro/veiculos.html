@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Escolha seu Veículo</title>
+  <style>
+    body { background-color: #fffacd; font-family: sans-serif; text-align: center; }
+    header { background-color: #003399; color: white; padding: 15px; position: fixed; width: 100%; top: 0; }
+    .carro { margin-top: 100px; }
+    img { width: 250px; height: auto; margin: 10px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Selecione um Veículo</h2>
+  </header>
+
+  <div class="carro">
+    <h3>Carro 1</h3>
+    <img src="imagens/carro1.jpg" alt="Carro 1"><br>
+    <button onclick="alugar('Carro 1')">Alugar</button>
+  </div>
+
+  <div class="carro">
+    <h3>Carro 2</h3>
+    <img src="imagens/carro2.jpg" alt="Carro 2"><br>
+    <button onclick="alugar('Carro 2')">Alugar</button>
+  </div>
+
+  <script>
+    function alugar(carro) {
+      localStorage.setItem('carroSelecionado', carro);
+      window.location.href = 'confirmacao.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirmar Aluguel</title>
+  <style>
+    body { background-color: #fffacd; font-family: Arial; text-align: center; }
+    header { background-color: #003399; color: white; padding: 15px; position: fixed; width: 100%; top: 0; }
+    main { margin-top: 100px; }
+    input { margin: 10px; padding: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Finalizar Pedido</h2>
+  </header>
+
+  <main>
+    <h3 id="veiculoInfo"></h3>
+    <input type="text" id="nome" placeholder="Nome do motorista"><br>
+    <input type="text" id="cnh" placeholder="Número da CNH"><br>
+    <button onclick="finalizar()">Finalizar Aluguel</button>
+  </main>
+
+  <script>
+    document.getElementById('veiculoInfo').innerText = 'Veículo selecionado: ' + localStorage.getItem('carroSelecionado');
+
+    function finalizar() {
+      const nome = document.getElementById('nome').value;
+      const cnh = document.getElementById('cnh').value;
+      if (nome && cnh) {
+        alert('Aluguel efetuado com sucesso!');
+      } else {
+        alert('Preencha todos os campos.');
+      }
+    }
+  </script>
+</body>
+</html>
