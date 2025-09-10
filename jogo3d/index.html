@@ -17,6 +17,7 @@
   </style>
 </head>
 <body>
+  <audio id="myAudio" src="honk.mp3"></audio>
   <div id="score">Score: 0</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
@@ -92,6 +93,14 @@
       if (e.key === "ArrowRight") camera.position.x += 1;
     });
 
+    document.addEventListener("keydown", e => {
+      if (e.key === "b") {
+        const audio = document.getElementById('myAudio');
+        audio.currentTime = 0;
+        audio.play();
+      }
+    });
+    
     animate();
     spawnLoop();
   </script>
