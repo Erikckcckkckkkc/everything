@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Calcule a área das formas!</h1>
+    <h3>Base</h3><input type="number" id=a><br><br>
+    <h3>Área</h3><input type="number" id=b><br><br>
+    <button onclick="tr()">Triângulo</button><br>
+    <button onclick="rc()">Retângulo</button><br>
+    <p id="msg"></p>
+    <script>
+        c = a * b
+        function tr(){
+            const msg = document.getElementById("msg");
+                msg.textContent = "A área do triângulo é:",c;
+        }
+        function rc(){
+            const msg = document.getElementById("msg");
+                msg.textContent = "A área do retângulo é:",c/2;
+        }
+    </script>
+</body>
+</html>
