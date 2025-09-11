@@ -17,8 +17,8 @@
   </style>
 </head>
 <body>
-  <audio autoplay loop id="music" src='music.mp3'></audio>
   <audio id="myAudio" src="mySound.mp3"></audio>
+  <audio autoplay loop id="music" src='music.mp3'></audio>
   <div id="score">Score: 0</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
@@ -70,6 +70,7 @@
             if (ob.position.z > 0 && Math.abs(ob.position.x - camera.position.x) < 1) {
             gameOver = true;
             alert("Game Over! Score: " + Math.floor(score / 100)*100);
+            document.getElementById('music').pause()
             }
 
             // Remove if offscreen
@@ -89,10 +90,40 @@
       }
     }
 
-    document.addEventListener("keydown", e => {
-      if (e.key === "ArrowLeft") camera.position.x -= 1;
-      if (e.key === "ArrowRight") camera.position.x += 1;
+    const keys = {
+      ArrowLeft: false,
+      ArrowRight: false,
+      ArrowUp: false
+    };
+    
+    document.addEventListener('keydown', e => {
+        if (e.key in keys) keys[e.key] = true;
     });
+    
+    document.addEventListener('keyup', e => {
+        if (e.key in keys) keys[e.key] = false;
+    });
+    
+    let lastMoveTime = 0;
+    let test = 0;
+    function update(timestamp) {
+      if (timestamp - lastMoveTime > 50) {
+          
+        if (keys.ArrowLeft) {
+          if (camera.position.x > -3) {camera.position.x -= 1};
+        }
+          
+        if (keys.ArrowRight) {
+          if (camera.position.x < 3) {camera.position.x += 1};
+        }
+        
+        if (keys.ArrowUp) {test = 2; score += 2;} else {test = 0};
+          
+        lastMoveTime = timestamp;
+      }
+      
+      requestAnimationFrame(update);
+    }
 
     document.addEventListener("keydown", e => {
       if (e.key === "b") {
