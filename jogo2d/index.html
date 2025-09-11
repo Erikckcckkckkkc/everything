@@ -20,6 +20,7 @@
 </head>
 <body>
   <audio id="myAudio" src='mySound.mp3'></audio>
+  <audio loop id="music" src='music.mp3'></audio>
   <canvas id="gameCanvas" width="400" height="600"></canvas>
 
   <script>
@@ -79,6 +80,7 @@
         ctx.fillStyle = "#fff";
         ctx.font = "40px Arial";
         ctx.fillText("Game Over", 100, canvas.height / 2);
+        music.pause()
         return;
       }
 
@@ -108,6 +110,9 @@
 
     gameLoop();
 
+    const music = document.getElementById('music');
+    music.play();
+    
     document.addEventListener("keydown", e => {
       if (e.key === "b") {
         const audio = document.getElementById('myAudio');
