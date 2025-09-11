@@ -110,9 +110,10 @@
 
     gameLoop();
 
-    const music = document.getElementById('music');
-    music.play();
-    
+        const music = document.getElementById('music');
+        music.currentTime = 0;
+        music.play();
+      
     document.addEventListener("keydown", e => {
       if (e.key === "b") {
         const audio = document.getElementById('myAudio');
