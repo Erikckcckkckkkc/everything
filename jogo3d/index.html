@@ -23,6 +23,7 @@
   <div id="score">Score: 0</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
+    const container = document.getElementById('gameContainer');
     const renderer = new THREE.WebGLRenderer();
   
     if (document.getElementById('points')) {document.getElementById('points').remove();}
@@ -91,7 +92,7 @@
 
         requestAnimationFrame(animate);
         score++;
-        document.getElementById("scorer").innerText = "SCORE: " + Math.floor(score/100)*100;
+        document.getElementById("score").innerText = "SCORE: " + Math.floor(score/100)*100;
 
         for (let i = obstacles.length - 1; i >= 0; i--) {
             const ob = obstacles[i];
@@ -99,7 +100,6 @@
 
             if (ob.position.z > 0 && Math.abs(ob.position.x - camera.position.x) < 1) {
               gameOver = true;
-              startTyping('you got a score of ' + Math.floor(score / 100) * 100 + '!!!!!');
               document.getElementById('music').pause();
               renderer.domElement.remove();
               container.innerHTML = `<h1 id='points'>you got a score of ${Math.floor(score / 100) * 100}!!!!!</h1>`
