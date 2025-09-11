@@ -110,9 +110,13 @@
 
     gameLoop();
 
+    document.addEventListener("click", e => {
+      
         const music = document.getElementById('music');
         music.currentTime = 0;
         music.play();
+      
+    });
       
     document.addEventListener("keydown", e => {
       if (e.key === "b") {
