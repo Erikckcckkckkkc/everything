@@ -19,14 +19,13 @@
 <body>
   <audio id="myAudio" src="mySound.mp3"></audio>
   <audio autoplay loop id="music" src='music.mp3'></audio>
+  <div id="gameContainer" style="width: 600px; height: 300px; margin-top: 23px;"></div>
   <div id="score">Score: 0</div>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script>
     const renderer = new THREE.WebGLRenderer();
-  function startGame() {
+  
     if (document.getElementById('points')) {document.getElementById('points').remove();}
-    const container = document.getElementById("gameContainer");
-    if (!container) return;
     
     const scene = new THREE.Scene();
     scene.background = new THREE.Color( 0x2465ec );
@@ -217,7 +216,6 @@
     spawnLoop();
     roadLineLoop();
     cactusLoop();
-  };
   </script>
 </body>
 </html>
