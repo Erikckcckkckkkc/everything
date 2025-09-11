@@ -20,7 +20,7 @@
 </head>
 <body>
   <audio id="myAudio" src='mySound.mp3'></audio>
-  <audio autoplay loop id="music" src='music.mp3'></audio>
+  <audio loop id="music" src='music.mp3'></audio>
   <canvas id="gameCanvas" width="400" height="600"></canvas>
 
   <script>
@@ -109,7 +109,15 @@
     });
 
     gameLoop();
-      
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "m") {
+        const music = document.getElementById('music');
+        music.currentTime = 0;
+        music.play();
+      }
+    });
+    
     document.addEventListener("keydown", e => {
       if (e.key === "b") {
         const audio = document.getElementById('myAudio');
